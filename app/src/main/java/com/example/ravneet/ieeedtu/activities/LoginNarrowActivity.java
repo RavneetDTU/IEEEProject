@@ -8,7 +8,7 @@ import com.example.ravneet.ieeedtu.R;
  * Created by ravneet on 17/6/17.
  */
 
-class LoginNarrowActivity extends BaseActivity {
+public class LoginNarrowActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedState){
         super.onCreate(savedState);
