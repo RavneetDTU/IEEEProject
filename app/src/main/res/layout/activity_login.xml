@@ -44,6 +44,12 @@
             android:text="Google Login"
             android:layout_gravity="center_horizontal"
             android:id="@+id/btn_googlelogin"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TEMP----Jump to IEEE App"
+            android:id="@+id/btn_temp"
+            android:onClick="movetoApp"/>
 
     </LinearLayout>
 

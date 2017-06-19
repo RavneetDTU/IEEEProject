@@ -14,5 +14,6 @@ public class LoginNarrowActivity extends BaseActivity {
         super.onCreate(savedState);
 
         setContentView(R.layout.activity_login_narrow );
+
     }
 }
