@@ -24,13 +24,19 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.editor">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
-                <data android:mimeType="image/*"/>
-                <data android:mimeType="video/*"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.BiweeklyArticle" />
+        <activity android:name=".activities.NewsFeedActivity" />
+        <activity android:name=".activities.IEEECouncilActivity" />
+        <activity android:name=".activities.NotificationActivity"></activity>
     </application>
 
 </manifest>

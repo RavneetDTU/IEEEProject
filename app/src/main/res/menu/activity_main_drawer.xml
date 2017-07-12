@@ -4,30 +4,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_newsfeed"
-            android:icon="@drawable/ic_menu_camera"
             android:title="News Feed" />
         <item
             android:id="@+id/nav_notification"
-            android:icon="@drawable/ic_menu_gallery"
             android:title="Notifications" />
         <item
             android:id="@+id/nav_ieeecouncil"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="IEEE Council" />
+        <item
+            android:id="@+id/nav_biweeklyArticle"
+            android:title="Biweekly Article"/>
 
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>

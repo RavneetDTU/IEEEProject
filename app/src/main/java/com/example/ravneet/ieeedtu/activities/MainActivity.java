@@ -1,5 +1,6 @@
 package com.example.ravneet.ieeedtu.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,11 +75,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_newsfeed) {
-            // Handle the camera action
+            startActivity(new Intent(MainActivity.this,NewsFeedActivity.class));
         } else if (id == R.id.nav_notification) {
-
+            startActivity(new Intent(MainActivity.this,NotificationActivity.class));
         } else if (id == R.id.nav_ieeecouncil) {
-
+            startActivity(new Intent(MainActivity.this,IEEECouncilActivity.class));
+        }else if(id == R.id.nav_biweeklyArticle){
+            startActivity(new Intent(MainActivity.this,BiweeklyArticle.class));
         }
 
 

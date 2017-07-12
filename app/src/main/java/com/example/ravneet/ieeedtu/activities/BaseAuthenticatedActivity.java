@@ -10,17 +10,18 @@ import android.os.Bundle;
 public abstract class BaseAuthenticatedActivity extends BaseActivity {
 
     @Override
-    protected final void onCreate(Bundle savedState){
+    protected final void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        if(!application.getAuth().getUser().isLoggedIn()){
-            startActivity(new Intent(this,LoginActivity.class));
-            finish();
-            return;
-        }
-
-        onIEEECreate(savedState);
+//        if(!application.getAuth().getUser().isLoggedIn()){
+//            startActivity(new Intent(this,LoginActivity.class));
+//            finish();
+//            return;
+//        }
+//
+//        onIEEECreate(savedState);
+//    }
+//
+//    protected abstract void onIEEECreate(Bundle savedState);
     }
-
-    protected abstract void onIEEECreate(Bundle savedState);
 }
