@@ -11,6 +11,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainactivity_framelayout"></FrameLayout>
+        android:id="@+id/mainactivity_framelayout">
+
+    </FrameLayout>
 
 </RelativeLayout>
