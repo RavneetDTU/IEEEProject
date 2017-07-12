@@ -3,34 +3,17 @@
     package="com.example.ravneet.ieeedtu">
 
     <application
-        android:name=".infrasturcture.IEEEApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ieee_logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.LoginNarrowActivity" />
-        <activity
-            android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".activities.editor">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="image/*" />
-                <data android:mimeType="video/*" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.BiweeklyArticle" />
@@ -39,4 +22,6 @@
         <activity android:name=".activities.NotificationActivity"></activity>
     </application>
 
+
 </manifest>
+
