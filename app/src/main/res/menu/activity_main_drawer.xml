@@ -3,9 +3,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_newsfeed"
-            android:title="News Feed" />
-        <item
             android:id="@+id/nav_notification"
             android:title="Notifications" />
         <item
@@ -14,6 +11,10 @@
         <item
             android:id="@+id/nav_biweeklyArticle"
             android:title="Biweekly Article"/>
+
+        <item
+            android:id="@+id/nav_newsfeed"
+            android:title="IEEE Members" />
 
     </group>
 
