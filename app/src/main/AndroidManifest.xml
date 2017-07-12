@@ -23,7 +23,10 @@
             android:name=".activities.MemberOnly"
             android:label="@string/title_activity_member_only"
             android:theme="@style/AppTheme" />
-        <activity android:name=".PrivateActivity.SIGNotification"></activity>
+        <activity android:name=".PrivateActivity.SIGNotification" />
+        <activity android:name=".PrivateActivity.EventNotification" />
+        <activity android:name=".PrivateActivity.ChatRoom" />
+        <activity android:name=".activities.ContactUs"></activity>
     </application>
 
 </manifest>

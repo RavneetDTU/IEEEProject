@@ -7,7 +7,7 @@
     tools:context="com.example.ravneet.ieeedtu.activities.editor">
 
     <include
-        layout="@layout/include_login_header"
+        layout="@layout/include_ieee_header"
         android:id="@+id/include" />
 
     <ImageView

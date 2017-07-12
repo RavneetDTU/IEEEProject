@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/include_login_header"/>
+        layout="@layout/include_ieee_header"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +14,6 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="com.example.ravneet.ieeedtu.fragments.Loginfragment"
             tools:layout="@layout/fragment_layout"
             android:id="@+id/activity_login_narrow_fragment"/>
 

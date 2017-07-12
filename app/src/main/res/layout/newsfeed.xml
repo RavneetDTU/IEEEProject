@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/include_login_header"/>
+        layout="@layout/include_ieee_header"/>
 
     <TextView
         android:layout_width="match_parent"
