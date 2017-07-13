@@ -2,6 +2,7 @@ package com.example.ravneet.ieeedtu.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,11 +14,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.ravneet.ieeedtu.R;
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String ANONYMOUS = "anonymous";
+    private static final int RC_SIGN_IN = 1;
+
+    private String mUsername;
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+    private ChildEventListener mChildEventListner;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListner;
+    private FirebaseStorage mFirebaseStorage;
+    private StorageReference mStorageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +57,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mUsername = ANONYMOUS;
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseStorage = FirebaseStorage.getInstance();
     }
 
     @Override
@@ -62,6 +91,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_contactus) {
+            startActivity(new Intent(MainActivity.this,ContactUs.class));
             return true;
         }
 
@@ -74,7 +104,30 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_newsfeed) {
+        if (id == R.id.nav_memberonly) {
+            mAuthStateListner = new FirebaseAuth.AuthStateListener() {
+                @Override
+                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    if(user != null){
+                        //user is Signed In
+                        onSignedInInitialize(user.getDisplayName());
+                        startActivity(new Intent(MainActivity.this,MemberOnly.class));
+                        Toast.makeText(MainActivity.this,"You Are Signed IN",Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        // user is not Signed In
+                        onSignedOutCleaned();
+                        startActivityForResult(AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setIsSmartLockEnabled(false).setProviders(
+                                        AuthUI.EMAIL_PROVIDER,
+                                        AuthUI.GOOGLE_PROVIDER).build(),RC_SIGN_IN);
+                    }
+
+                }
+            };
             startActivity(new Intent(MainActivity.this,MemberOnly.class));
         } else if (id == R.id.nav_notification) {
             startActivity(new Intent(MainActivity.this,NotificationActivity.class));
@@ -88,5 +141,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void onSignedOutCleaned() {
+
+        mUsername = ANONYMOUS;
+
+    }
+
+    private void onSignedInInitialize(String username) {
+        mUsername = username;
+
     }
 }

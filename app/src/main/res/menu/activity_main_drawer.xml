@@ -13,7 +13,7 @@
             android:title="Biweekly Article"/>
 
         <item
-            android:id="@+id/nav_newsfeed"
+            android:id="@+id/nav_memberonly"
             android:title="IEEE Members" />
 
     </group>

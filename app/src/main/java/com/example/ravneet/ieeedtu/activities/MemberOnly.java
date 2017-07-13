@@ -1,5 +1,6 @@
 package com.example.ravneet.ieeedtu.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.ravneet.ieeedtu.PrivateActivity.ChatRoom;
+import com.example.ravneet.ieeedtu.PrivateActivity.EventNotification;
+import com.example.ravneet.ieeedtu.PrivateActivity.SIGNotification;
 import com.example.ravneet.ieeedtu.R;
 
 public class MemberOnly extends AppCompatActivity
@@ -25,14 +29,6 @@ public class MemberOnly extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -81,10 +77,11 @@ public class MemberOnly extends AppCompatActivity
 
         if (id == R.id.nav_signotification) {
             // Handle the camera action
+            startActivity(new Intent(MemberOnly.this, SIGNotification.class));
         } else if (id == R.id.nav_eventnotification) {
-
+            startActivity(new Intent(MemberOnly.this, EventNotification.class));
         } else if (id == R.id.nav_chatroom) {
-
+            startActivity(new Intent(MemberOnly.this,ChatRoom.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
