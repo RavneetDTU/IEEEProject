@@ -26,7 +26,8 @@
         <activity android:name=".PrivateActivity.SIGNotification" />
         <activity android:name=".PrivateActivity.EventNotification" />
         <activity android:name=".PrivateActivity.ChatRoom" />
-        <activity android:name=".activities.ContactUs"></activity>
+        <activity android:name=".activities.ContactUs" />
+        <activity android:name=".PrivateActivity.SIGInformation"></activity>
     </application>
 
 </manifest>

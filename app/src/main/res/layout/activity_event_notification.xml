@@ -4,11 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.ravneet.ieeedtu.PrivateActivity.EventNotification">
 
+    <include
+        layout="@layout/include_ieee_header"/>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+
         android:text="EVENT Notification"/>
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="POST Notification For Sig"
+    android:id="@+id/btn_PostSigNotification"
+    android:layout_gravity="bottom"/>
 
 </LinearLayout>
