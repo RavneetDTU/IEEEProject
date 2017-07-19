@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.ravneet.ieeedtu.R;
 
-public class SIGInformation extends AppCompatActivity {
+public class SIGInformationPost extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

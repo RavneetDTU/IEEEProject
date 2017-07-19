@@ -21,7 +21,7 @@ public class EventNotification extends AppCompatActivity {
         btn_postSigNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EventNotification.this,SIGInformation.class));
+                startActivity(new Intent(EventNotification.this,SIGInformationPost.class));
             }
         });
     }

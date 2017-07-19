@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="7dp"
+    app:cardCornerRadius="5dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title For SIG"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_SIGtitle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Place"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:id="@+id/tv_SIGPlace"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date And Time"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:id="@+id/tv_SIGDate"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

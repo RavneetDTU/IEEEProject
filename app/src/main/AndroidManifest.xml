@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ravneet.ieeedtu">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +29,9 @@
         <activity android:name=".PrivateActivity.EventNotification" />
         <activity android:name=".PrivateActivity.ChatRoom" />
         <activity android:name=".activities.ContactUs" />
-        <activity android:name=".PrivateActivity.SIGInformation"></activity>
+        <activity android:name=".PrivateActivity.SIGInformationPost" />
+        <activity android:name=".PrivateActivity.DetailsSIG" />
+        <activity android:name=".PrivateActivity.LargeSIGNotification"></activity>
     </application>
 
 </manifest>
