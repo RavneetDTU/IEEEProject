@@ -11,27 +11,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.BiweeklyArticle" />
-        <activity android:name=".activities.IEEECouncilActivity" />
-        <activity android:name=".activities.NotificationActivity" />
+        <activity android:name=".activities.BiweeklyArticle"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.IEEECouncilActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.NotificationActivity"
+            android:screenOrientation="portrait"/>
         <activity
+            android:screenOrientation="portrait"
             android:name=".activities.MemberOnly"
             android:label="@string/title_activity_member_only"
             android:theme="@style/AppTheme" />
-        <activity android:name=".PrivateActivity.SIGNotification" />
-        <activity android:name=".PrivateActivity.EventNotification" />
-        <activity android:name=".PrivateActivity.ChatRoom" />
-        <activity android:name=".activities.ContactUs" />
-        <activity android:name=".PrivateActivity.SIGInformationPost" />
-        <activity android:name=".PrivateActivity.DetailsSIG" />
-        <activity android:name=".PrivateActivity.LargeSIGNotification"></activity>
+        <activity android:name=".PrivateActivity.SIGNotification"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PrivateActivity.EventNotification"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PrivateActivity.ChatRoom"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ContactUs"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PrivateActivity.SIGInformationPost"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PrivateActivity.DetailsSIG"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PrivateActivity.LargeSIGNotification"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

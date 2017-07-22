@@ -10,7 +10,7 @@
             android:title="IEEE Council" />
         <item
             android:id="@+id/nav_biweeklyArticle"
-            android:title="Biweekly Article"/>
+            android:title="Achivements"/>
 
         <item
             android:id="@+id/nav_memberonly"

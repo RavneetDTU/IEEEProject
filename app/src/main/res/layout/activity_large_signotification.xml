@@ -23,7 +23,7 @@
         android:text="TITLE"
         android:textSize="30dp"
         android:textColor="@android:color/black"
-        android:id="@id/tv_SIGtitle"/>
+        android:id="@+id/tv_SIGtitle"/>
 
         <LinearLayout
             android:layout_width="match_parent"
