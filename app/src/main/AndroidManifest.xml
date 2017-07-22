@@ -55,7 +55,8 @@
         <activity
             android:name=".PrivateActivity.LargeSIGNotification"
             android:screenOrientation="portrait" />
-        <activity android:name=".MakingPosts.MakePosts"></activity>
+        <activity android:name=".MakingPosts.MakePosts" />
+        <activity android:name=".MakingPosts.IEEECouncilPost"></activity>
     </application>
 
 </manifest>

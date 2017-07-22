@@ -10,4 +10,7 @@
         android:title="Posts"
         android:id="@+id/makePosts"
         app:showAsAction="always"/>
+    <item
+        android:title="SIGN-OUT"
+        android:id="@+id/nav_signout"/>
 </menu>

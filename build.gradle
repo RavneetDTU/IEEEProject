@@ -19,7 +19,7 @@ allprojects {
     repositories {
         jcenter()
         maven{
-            url 'https://maven.fabric.io/public'
+            url 'https://maven.google.com'
         }
     }
 }

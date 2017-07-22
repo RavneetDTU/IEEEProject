@@ -5,27 +5,39 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.ravneet.ieeedtu.MakingPosts.MakePosts">
+    tools:context="com.example.ravneet.ieeedtu.MakingPosts.IEEECouncilPost">
 
     <include
         layout="@layout/include_ieee_header"/>
+
+    <EditText
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="POST Of Member"
+        android:id="@+id/et_postofMember"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Name Of Member"
+        android:id="@+id/et_nameofMember"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Year And Branch"
+        android:id="@+id/et_YearofMember"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SIG Notification"
-        android:id="@+id/btn_SIGNotification"/>
+        android:layout_margin="10dp"
+        android:text="Attach Image"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Public Notification"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_IEEECouncil"
-        android:text="IEEE Council"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Post Achivement"/>
+        android:layout_margin="10dp"
+        android:id="@+id/btn_PostMemberInfo"
+        android:text="Post Information"/>
 
 </LinearLayout>

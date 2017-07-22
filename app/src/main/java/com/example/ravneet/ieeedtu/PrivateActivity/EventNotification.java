@@ -11,19 +11,12 @@ import com.example.ravneet.ieeedtu.R;
 
 public class EventNotification extends AppCompatActivity {
 
-    Button btn_postSigNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_notification);
 
-        btn_postSigNotification = (Button) findViewById(R.id.btn_PostSigNotification);
-        btn_postSigNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(EventNotification.this,SIGInformationPost.class));
-            }
-        });
+
     }
 }
