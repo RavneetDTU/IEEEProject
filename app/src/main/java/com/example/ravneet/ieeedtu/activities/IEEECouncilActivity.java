@@ -23,10 +23,16 @@ public class IEEECouncilActivity extends AppCompatActivity {
     RecyclerView rv_IEEECouncil;
     IEEECouncilAdapter councilAdapter;
 
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ieeecouncil);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
 
         rv_IEEECouncil = (RecyclerView) findViewById(R.id.rv_ieeecouncil);
         rv_IEEECouncil.setLayoutManager(new LinearLayoutManager(this));

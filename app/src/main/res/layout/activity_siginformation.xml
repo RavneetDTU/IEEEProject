@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.ravneet.ieeedtu.PrivateActivity.SIGInformationPost">
+    tools:context="com.example.ravneet.ieeedtu.MakingPosts.SIGInformationPost">
 
     <include
         layout="@layout/include_ieee_header"/>
@@ -39,7 +39,7 @@
         android:layout_height="200dp"
         android:gravity="top"
         android:hint="Description For SIG"
-        android:id="@+id/et_sigBody"/>
+        android:id="@+id/et_sigdescription"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

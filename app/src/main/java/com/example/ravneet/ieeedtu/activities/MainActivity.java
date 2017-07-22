@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.example.ravneet.ieeedtu.MakingPosts.MakePosts;
 import com.example.ravneet.ieeedtu.PrivateActivity.ChatRoom;
 import com.example.ravneet.ieeedtu.PrivateActivity.EventNotification;
 import com.example.ravneet.ieeedtu.PrivateActivity.SIGNotification;
@@ -68,6 +69,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, ContactUs.class));
             return true;
         }
+        else if(id == R.id.makePosts){
+            startActivity(new Intent(MainActivity.this, MakePosts.class));
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_ieeecouncil) {
             startActivity(new Intent(MainActivity.this, IEEECouncilActivity.class));
         } else if (id == R.id.nav_biweeklyArticle) {
-            startActivity(new Intent(MainActivity.this, BiweeklyArticle.class));
+            startActivity(new Intent(MainActivity.this, Achivements.class));
         } else if (id == R.id.nav_signotification) {
             // Handle the camera action
             startActivity(new Intent(MainActivity.this, SIGNotification.class));

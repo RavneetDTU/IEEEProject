@@ -5,7 +5,6 @@ package com.example.ravneet.ieeedtu.infrasturcture
  */
 data class SIGModel(
         val title : String,
-        val body : String,
         val date : String,
         val place : String,
         val description : String

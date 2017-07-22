@@ -1,15 +1,15 @@
-package com.example.ravneet.ieeedtu.PrivateActivity;
+package com.example.ravneet.ieeedtu.MakingPosts;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.ravneet.ieeedtu.R;
 
-public class SIGInformationPost extends AppCompatActivity {
+public class MakePosts extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_siginformation);
+        setContentView(R.layout.activity_make_posts);
     }
 }
