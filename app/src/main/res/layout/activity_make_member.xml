@@ -27,11 +27,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Year And Branch"
-            android:id="@+id/et_MakeMemberYera"/>
+            android:textSize="25dp"
+            android:id="@+id/et_MakeMemberYear"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email ID"
+            android:textSize="25dp"
             android:id="@+id/et_MakeMemberEmailID"/>
 
         <Button

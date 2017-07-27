@@ -33,8 +33,8 @@ public class SIGInformationPost extends AppCompatActivity {
         et_description = (EditText) findViewById(R.id.et_sigdescription);
 
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("SIGInformation");
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//        databaseReference = firebaseDatabase.getReference().child("SIGInformation");
 
 //         final String SIGTitle = et_Title.getText().toString();
 //         final String dateAndTime = et_dateAndTime.getText().toString();
@@ -47,8 +47,8 @@ public class SIGInformationPost extends AppCompatActivity {
         btn_Post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SIGModel thisSig = new SIGModel(et_Title.getText().toString(),et_dateAndTime.getText().toString(),et_place.getText().toString(),et_description.getText().toString());
-                databaseReference.push().setValue(thisSig);
+//                SIGModel thisSig = new SIGModel(et_Title.getText().toString(),et_dateAndTime.getText().toString(),et_place.getText().toString(),et_description.getText().toString());
+//                databaseReference.push().setValue(thisSig);
 
                 Toast.makeText(SIGInformationPost.this, "Posting SIG Information", Toast.LENGTH_SHORT).show();
 

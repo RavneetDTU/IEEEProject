@@ -18,8 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:layout_marginTop="28dp"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
+        app:headerLayout="@layout/include_ieee_header"
         app:menu="@menu/activity_main_drawer" />
     
     <android.support.design.widget.NavigationView
@@ -28,7 +29,7 @@
         app:menu="@menu/member_only"
         android:layout_gravity="end"
         android:layout_marginTop="28dp"
-        app:headerLayout="@layout/include_ieee_header"
+        app:headerLayout="@layout/nav_header_main"
         android:fitsSystemWindows="true">
 
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
     android:orientation="vertical"
     tools:context="com.example.ravneet.ieeedtu.activities.ContactUs">
 
@@ -11,10 +12,29 @@
         layout="@layout/include_ieee_header"/>
 
     <TextView
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Contact Us"/>
+        android:textColor="@android:color/white"
+        android:text="In case you may face any problem, We will love to hear from your side."/>
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@android:color/white"
+        android:text="For Membership..... Contact Our Membership Coordinators" />
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@android:color/white"
+         android:text="For any other query
+Please write us at : contact@ieeedtu.com"/>
 
 
 </LinearLayout>

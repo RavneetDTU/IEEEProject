@@ -10,7 +10,7 @@ import com.example.ravneet.ieeedtu.R;
 
 public class MakePosts extends AppCompatActivity {
 
-    Button btn_SIGNotification,btn_PublicNotification,btn_IEEECouncil,btn_Achivements;
+    Button btn_SIGNotification,btn_PublicNotification,btn_IEEECouncil,btn_Achivements,btn_Membership;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class MakePosts extends AppCompatActivity {
 
         btn_SIGNotification = (Button) findViewById(R.id.btn_SIGNotification);
         btn_IEEECouncil = (Button) findViewById(R.id.btn_IEEECouncil);
+        btn_Membership = (Button) findViewById(R.id.btn_membership);
 
 
         btn_SIGNotification.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +35,13 @@ public class MakePosts extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MakePosts.this,IEEECouncilPost.class));
                 finish();
+            }
+        });
+
+        btn_Membership.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MakePosts.this,MakeMember.class));
             }
         });
     }

@@ -65,8 +65,9 @@ public class MainActivity extends AppCompatActivity
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
+                                    .setLogo(R.drawable.ieee_logo)
                                     .setIsSmartLockEnabled(false)
-                                    .setAvailableProviders(
+                                    .setProviders(
                                             Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
                                                     new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
                                     .build(),
@@ -123,9 +124,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_memberonly) {
-            startActivity(new Intent(MainActivity.this, MemberOnly.class));
-        } else if (id == R.id.nav_notification) {
+        if (id == R.id.nav_notification) {
             startActivity(new Intent(MainActivity.this, NotificationActivity.class));
         } else if (id == R.id.nav_ieeecouncil) {
             startActivity(new Intent(MainActivity.this, IEEECouncilActivity.class));

@@ -30,11 +30,6 @@
             android:name=".activities.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MemberOnly"
-            android:label="@string/title_activity_member_only"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".PrivateActivity.SIGNotification"
             android:screenOrientation="portrait" />
         <activity
@@ -56,7 +51,8 @@
             android:name=".PrivateActivity.LargeSIGNotification"
             android:screenOrientation="portrait" />
         <activity android:name=".MakingPosts.MakePosts" />
-        <activity android:name=".MakingPosts.IEEECouncilPost"></activity>
+        <activity android:name=".MakingPosts.IEEECouncilPost" />
+        <activity android:name=".MakingPosts.MakeMember"></activity>
     </application>
 
 </manifest>
