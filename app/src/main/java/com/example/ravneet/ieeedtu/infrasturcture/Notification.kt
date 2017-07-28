@@ -5,5 +5,6 @@ package com.example.ravneet.ieeedtu.infrasturcture
  */
 data class Notification(
         val title : String,
-        val body : String
+        val body : String,
+        val date : String
 )

@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class IEEECouncilPost extends AppCompatActivity {
 
     EditText et_PostOfMember,et_NameOfMember,et_Year;
@@ -37,8 +39,8 @@ public class IEEECouncilPost extends AppCompatActivity {
         et_Year = (EditText) findViewById(R.id.et_YearofMember);
         btn_PostInfo = (Button) findViewById(R.id.btn_PostMemberInfo);
 
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//        databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
 
 
 
@@ -46,9 +48,9 @@ public class IEEECouncilPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                IEEECouncil thismember = new IEEECouncil(et_PostOfMember.getText().toString(),et_NameOfMember.getText().toString(),et_Year.getText().toString());
-//
-//                databaseReference.push().setValue(thismember);
+                IEEECouncil thismember = new IEEECouncil(et_PostOfMember.getText().toString(),et_NameOfMember.getText().toString(),et_Year.getText().toString());
+
+                databaseReference.push().setValue(thismember);
 
                 Toast.makeText(IEEECouncilPost.this, "Posting Member Info", Toast.LENGTH_SHORT).show();
 
@@ -63,8 +65,16 @@ public class IEEECouncilPost extends AppCompatActivity {
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                IEEECouncil currentMember =  dataSnapshot.getValue(IEEECouncil.class);
-
+//                IEEECouncil currentMember =  dataSnapshot
+//
+////                String name = currentMember.getName();
+////                String post = currentMember.getPost();
+////                String year = currentMember.getYear();
+//
+//                ArrayList<IEEECouncil> memberdetails = new ArrayList<IEEECouncil>();
+//                memberdetails.add(0,currentMember);
+//
+//                councilAdapter.updateCouncil(memberdetails);
             }
 
             @Override
@@ -88,7 +98,7 @@ public class IEEECouncilPost extends AppCompatActivity {
             }
         };
 
-//        databaseReference.addChildEventListener(childEventListener);
+        databaseReference.addChildEventListener(childEventListener);
 
 
     }

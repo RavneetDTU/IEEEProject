@@ -12,11 +12,6 @@
         android:padding="5dp"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/pdf"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
                 android:text="Title Of Article"
-                android:id="@+id/tv_pdfTitle"/>
+                android:id="@+id/tv_notificationTitle"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,15 +32,9 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_weight="1"
-                    android:text="Submitted By"/>
-
-                <TextView
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="20dp"
+                    android:id="@+id/tv_notificationDate"
                     android:layout_weight="1"
                     android:text="Date"/>
             </LinearLayout>

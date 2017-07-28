@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_rightview);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView1.setNavigationItemSelectedListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 

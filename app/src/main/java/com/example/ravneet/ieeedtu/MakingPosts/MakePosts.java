@@ -20,6 +20,7 @@ public class MakePosts extends AppCompatActivity {
         btn_SIGNotification = (Button) findViewById(R.id.btn_SIGNotification);
         btn_IEEECouncil = (Button) findViewById(R.id.btn_IEEECouncil);
         btn_Membership = (Button) findViewById(R.id.btn_membership);
+        btn_PublicNotification = (Button) findViewById(R.id.btn_makepublicNotification);
 
 
         btn_SIGNotification.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +43,13 @@ public class MakePosts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MakePosts.this,MakeMember.class));
+            }
+        });
+        btn_PublicNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MakePosts.this,NotificationPosting.class));
+                finish();
             }
         });
     }

@@ -52,7 +52,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".MakingPosts.MakePosts" />
         <activity android:name=".MakingPosts.IEEECouncilPost" />
-        <activity android:name=".MakingPosts.MakeMember"></activity>
+        <activity android:name=".MakingPosts.MakeMember" />
+        <activity android:name=".MakingPosts.NotificationPosting"></activity>
     </application>
 
 </manifest>

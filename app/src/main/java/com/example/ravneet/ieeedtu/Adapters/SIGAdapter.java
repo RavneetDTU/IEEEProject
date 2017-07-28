@@ -41,7 +41,7 @@ public class SIGAdapter extends RecyclerView.Adapter<SIGAdapter.SIGViewHolder> {
     @Override
     public SIGViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        LayoutInflater li = (LayoutInflater) context.getSystemService((context.LAYOUT_INFLATER_SERVICE));
+        LayoutInflater li = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View itemview = li.inflate(R.layout.list_itemsignotification,parent,false);
 
         return new SIGViewHolder(itemview);

@@ -30,7 +30,8 @@
         android:layout_gravity="end"
         android:layout_marginTop="28dp"
         app:headerLayout="@layout/nav_header_main"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:id="@+id/nav_rightview">
 
 
 

@@ -17,7 +17,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Public Notification"/>
+        android:text="Public Notification"
+        android:id="@+id/btn_makepublicNotification"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
