@@ -2,6 +2,7 @@ package com.example.ravneet.ieeedtu.MakingPosts;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,17 +16,20 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class IEEECouncilPost extends AppCompatActivity {
+
+    public static final String TAG = "false";
 
     EditText et_PostOfMember,et_NameOfMember,et_Year;
     Button btn_PostInfo;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private ChildEventListener childEventListener;
+    private ValueEventListener valueEventListener;
 
     IEEECouncilAdapter councilAdapter;
 
@@ -41,8 +45,6 @@ public class IEEECouncilPost extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
-
-
 
         btn_PostInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,44 +63,6 @@ public class IEEECouncilPost extends AppCompatActivity {
 
             }
         });
-
-        childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                IEEECouncil currentMember =  dataSnapshot
-//
-////                String name = currentMember.getName();
-////                String post = currentMember.getPost();
-////                String year = currentMember.getYear();
-//
-//                ArrayList<IEEECouncil> memberdetails = new ArrayList<IEEECouncil>();
-//                memberdetails.add(0,currentMember);
-//
-//                councilAdapter.updateCouncil(memberdetails);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-
-        databaseReference.addChildEventListener(childEventListener);
 
 
     }
