@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
                     // Means User is Logged In
-                    Toast.makeText(MainActivity.this, "You are Logged In...", Toast.LENGTH_SHORT).show();
                 }else{
                     startActivityForResult(
                             AuthUI.getInstance()
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity
 
         if(requestCode == RC_SIGN_IN){
             if(resultCode == RESULT_OK){
-                Toast.makeText(this, "You are Signed In...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "You are Logged In...", Toast.LENGTH_SHORT).show();
             }else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(this, "Sign-In Canceled", Toast.LENGTH_SHORT).show();
                 finish();

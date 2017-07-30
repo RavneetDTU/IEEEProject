@@ -1,11 +1,15 @@
 package com.example.ravneet.ieeedtu.activities;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 
 import com.example.ravneet.ieeedtu.Adapters.NotificationAdapter;
+import com.example.ravneet.ieeedtu.Adapters.OnItemClickListener;
 import com.example.ravneet.ieeedtu.R;
 import com.example.ravneet.ieeedtu.infrasturcture.IEEECouncil;
 import com.example.ravneet.ieeedtu.infrasturcture.Notification;
@@ -22,6 +26,8 @@ public class NotificationActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     NotificationAdapter notificationAdapter;
 
+    private ProgressBar progress;
+
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener = new ValueEventListener() {
@@ -34,6 +40,7 @@ public class NotificationActivity extends AppCompatActivity {
                         , dataSnapshotchild.child("date").getValue().toString());
                 councilArrayList.add(thisnotification);
             }
+            progress.setVisibility(ProgressBar.GONE);
             notificationAdapter.updateNotification(councilArrayList);
         }
 
@@ -48,6 +55,8 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
+           progress = (ProgressBar) findViewById(R.id.progressBar);
+
             firebaseDatabase = FirebaseDatabase.getInstance();
             databaseReference = firebaseDatabase.getReference().child("PublicNotification");
 
@@ -58,6 +67,17 @@ public class NotificationActivity extends AppCompatActivity {
         recyclerView.setAdapter(notificationAdapter);
 
             databaseReference.addValueEventListener(valueEventListener);
+
+            notificationAdapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(String title) {
+                    Intent i = new Intent(NotificationActivity.this,LargePublicNotification.class);
+                    startActivity(i);
+                }
+            });
+
+            progress.setVisibility(ProgressBar.VISIBLE);
+
 
     }
 }

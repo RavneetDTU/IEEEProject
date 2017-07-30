@@ -1,9 +1,11 @@
 package com.example.ravneet.ieeedtu.activities;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ravneet.ieeedtu.Adapters.IEEECouncilAdapter;
@@ -27,17 +29,20 @@ public class IEEECouncilActivity extends AppCompatActivity {
     IEEECouncilAdapter councilAdapter;
 
     private FirebaseDatabase firebaseDatabase;
+    private ProgressBar progress;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             ArrayList<IEEECouncil> councilArrayList = new ArrayList<>();
             for(DataSnapshot dataSnapshotchild : dataSnapshot.getChildren()){
+
                 IEEECouncil thismember = new IEEECouncil(dataSnapshotchild.child("name").getValue().toString()
                         ,dataSnapshotchild.child("post").getValue().toString()
                         ,dataSnapshotchild.child("year").getValue().toString());
                 councilArrayList.add(thismember);
             }
+            progress.setVisibility(ProgressBar.GONE);
             councilAdapter.updateCouncil(councilArrayList);
         }
 
@@ -52,6 +57,9 @@ public class IEEECouncilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ieeecouncil);
 
+        progress = (ProgressBar) findViewById(R.id.progressBar);
+
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
 
@@ -60,6 +68,8 @@ public class IEEECouncilActivity extends AppCompatActivity {
 
         councilAdapter = new IEEECouncilAdapter(this, new ArrayList<IEEECouncil>());
         rv_IEEECouncil.setAdapter(councilAdapter);
+
+        progress.setVisibility(ProgressBar.VISIBLE);
 
         databaseReference.addValueEventListener(valueEventListener);
 
