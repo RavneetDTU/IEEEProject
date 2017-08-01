@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ public class IEEECouncilActivity extends AppCompatActivity {
                         ,dataSnapshotchild.child("year").getValue().toString());
                 councilArrayList.add(thismember);
             }
-            progress.setVisibility(ProgressBar.GONE);
+            ((ViewGroup)progress.getParent()).removeView(progress);
             councilAdapter.updateCouncil(councilArrayList);
         }
 

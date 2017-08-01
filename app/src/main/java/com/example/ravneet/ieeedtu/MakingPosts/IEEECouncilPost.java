@@ -1,11 +1,14 @@
 package com.example.ravneet.ieeedtu.MakingPosts;
 
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ravneet.ieeedtu.Adapters.IEEECouncilAdapter;
@@ -25,13 +28,14 @@ public class IEEECouncilPost extends AppCompatActivity {
     public static final String TAG = "false";
 
     EditText et_PostOfMember,et_NameOfMember,et_Year;
-    Button btn_PostInfo;
+    Button btn_PostInfo,btn_Image;
+    ImageView memberimage;
+
+    public static final int PICK_IMAGE = 100;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private ValueEventListener valueEventListener;
 
-    IEEECouncilAdapter councilAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class IEEECouncilPost extends AppCompatActivity {
         et_NameOfMember = (EditText) findViewById(R.id.et_nameofMember);
         et_Year = (EditText) findViewById(R.id.et_YearofMember);
         btn_PostInfo = (Button) findViewById(R.id.btn_PostMemberInfo);
+        btn_Image = (Button) findViewById(R.id.btn_IEEEMemberImage);
+        memberimage = (ImageView) findViewById(R.id.iv_memberImage);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
@@ -64,6 +70,17 @@ public class IEEECouncilPost extends AppCompatActivity {
             }
         });
 
+        btn_Image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
 
+
+    }
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery,PICK_IMAGE);
     }
 }

@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.ravneet.ieeedtu.R;
 
-public class Achivements extends AppCompatActivity {
+public class LargeAchievement extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_achivements);
+        setContentView(R.layout.activity_large_achievement);
     }
 }

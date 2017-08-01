@@ -27,7 +27,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Post Achivement"/>
+        android:text="Post Achievement"
+        android:id="@+id/btn_MakeAchievement"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

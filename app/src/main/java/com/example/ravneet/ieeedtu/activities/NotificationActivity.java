@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.ravneet.ieeedtu.Adapters.NotificationAdapter;
@@ -40,7 +41,7 @@ public class NotificationActivity extends AppCompatActivity {
                         , dataSnapshotchild.child("date").getValue().toString());
                 councilArrayList.add(thisnotification);
             }
-            progress.setVisibility(ProgressBar.GONE);
+            ((ViewGroup)progress.getParent()).removeView(progress);
             notificationAdapter.updateNotification(councilArrayList);
         }
 

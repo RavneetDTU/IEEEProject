@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_ieeecouncil) {
             startActivity(new Intent(MainActivity.this, IEEECouncilActivity.class));
         } else if (id == R.id.nav_biweeklyArticle) {
-            startActivity(new Intent(MainActivity.this, Achivements.class));
+            startActivity(new Intent(MainActivity.this, AchievementActivity.class));
         } else if (id == R.id.nav_signotification) {
             // Handle the camera action
             startActivity(new Intent(MainActivity.this, SIGNotification.class));
