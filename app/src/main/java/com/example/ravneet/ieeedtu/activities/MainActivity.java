@@ -9,8 +9,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -19,6 +21,7 @@ import com.example.ravneet.ieeedtu.PrivateActivity.ChatRoom;
 import com.example.ravneet.ieeedtu.PrivateActivity.EventNotification;
 import com.example.ravneet.ieeedtu.PrivateActivity.SIGNotification;
 import com.example.ravneet.ieeedtu.R;
+import com.example.ravneet.ieeedtu.infrasturcture.PaidMember;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth firebaseAuth;
+    final static ArrayList<PaidMember> paidMemberList = new ArrayList<>();
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -42,15 +47,35 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
 
+            for (DataSnapshot datachild : dataSnapshot.getChildren()) {
+                PaidMember thismember = new PaidMember(datachild.child("name").getValue().toString(),
+                        datachild.child("year").getValue().toString(),
+                        datachild.child("email").getValue().toString().toLowerCase(),
+                        datachild.child("membershipGivenBy").getValue().toString());
+                paidMemberList.add(thismember);
+            }
+            for (int i = 0; i < paidMemberList.size(); i++) {
+                Log.d("TAG", "onActivityResult: " + paidMemberList.get(i).getEmail());
+                if (paidMemberList.get(i).getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                    //navigationView1.setVisibility(View.VISIBLE);
+                    if (drawer.findViewById(R.id.nav_rightview) == null)
+                        drawer.addView(adminNavigationView);
+                    Toast.makeText(MainActivity.this, "You Are Admin User...", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
         }
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
 
         }
-    }
+    };
 
     public static final int RC_SIGN_IN = 1;
+    DrawerLayout drawer;
+    NavigationView adminNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,41 +88,66 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        adminNavigationView = (NavigationView) drawer.findViewById(R.id.nav_rightview);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_rightview);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView1.setNavigationItemSelectedListener(this);
+       navigationView1.setNavigationItemSelectedListener(this);
+        drawer.removeViewAt(2);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        if (user != null) {
+            Log.e("TAG", "onCreate: User isn't null");
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot datachild : dataSnapshot.getChildren()) {
+                        PaidMember thismember = new PaidMember(datachild.child("name").getValue().toString(),
+                                datachild.child("year").getValue().toString(),
+                                datachild.child("email").getValue().toString(),
+                                datachild.child("membershipGivenBy").getValue().toString());
+                        paidMemberList.add(thismember);
+                    }
+                    for (int i = 0; i < paidMemberList.size(); i++) {
+                        Log.d("TAG", "onCreate: " + paidMemberList.get(i).getEmail());
+                        if (paidMemberList.get(i).getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                            //navigationView1.setVisibility(View.VISIBLE);
+                            if (drawer.findViewById(R.id.nav_rightview) == null)
+                                drawer.addView(adminNavigationView);
+                            Toast.makeText(MainActivity.this, "You Are Admin User...", Toast.LENGTH_SHORT).show();
 
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
-                    // Means User is Logged In
-                }else{
-                    startActivityForResult(
-                            AuthUI.getInstance()
-                                    .createSignInIntentBuilder()
-                                    .setLogo(R.drawable.ieee_logo)
-                                    .setIsSmartLockEnabled(false)
-                                    .setProviders(
-                                            Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-                                                    new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
-                                    .build(),
-                            RC_SIGN_IN);
+                        }
+                    }
                 }
 
-            }
-        };
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        } else {
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setLogo(R.drawable.ieee_logo)
+                            .setIsSmartLockEnabled(false)
+                            .setProviders(
+                                    Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                            new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
+                            .build(),
+                    RC_SIGN_IN);
+        }
 
     }
 
@@ -129,13 +179,22 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_contactus) {
             startActivity(new Intent(MainActivity.this, ContactUs.class));
             return true;
-        }
-        else if(id == R.id.makePosts){
+        } else if (id == R.id.makePosts) {
             startActivity(new Intent(MainActivity.this, MakePosts.class));
             return true;
-        }
-        else if(id == R.id.nav_signout){
+        } else if (id == R.id.nav_signout) {
             AuthUI.getInstance().signOut(this);
+            drawer.removeView(adminNavigationView);
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setLogo(R.drawable.ieee_logo)
+                            .setIsSmartLockEnabled(false)
+                            .setProviders(
+                                    Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                            new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
+                            .build(),
+                    RC_SIGN_IN);
         }
 
         return super.onOptionsItemSelected(item);
@@ -171,25 +230,15 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RC_SIGN_IN){
-            if(resultCode == RESULT_OK){
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
                 Toast.makeText(MainActivity.this, "You are Logged In...", Toast.LENGTH_SHORT).show();
-            }else if(resultCode == RESULT_CANCELED){
+                databaseReference.addValueEventListener(valueEventListener);
+            } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Sign-In Canceled", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        firebaseAuth.removeAuthStateListener(authStateListener);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        firebaseAuth.addAuthStateListener(authStateListener);
-    }
 }

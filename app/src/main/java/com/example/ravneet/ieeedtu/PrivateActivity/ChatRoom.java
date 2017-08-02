@@ -90,7 +90,7 @@ public class ChatRoom extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);
                 i.setType("image/*");
                 i.putExtra(i.EXTRA_LOCAL_ONLY,true);
-                startActivityForResult(i.createChooser(i,"Complete Action Using"),RC_PHOTO_PICKER);
+                startActivityForResult(i.createChooser(i,"Complete Action Using...."),RC_PHOTO_PICKER);
 
             }
         });
@@ -107,6 +107,8 @@ public class ChatRoom extends AppCompatActivity {
         });
 
         et_Message.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MES_LENGTH_LIMIT)});
+
+        databaseReference.addValueEventListener(valueEventListener);
 
     }
 }
