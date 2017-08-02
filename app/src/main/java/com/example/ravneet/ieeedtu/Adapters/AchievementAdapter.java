@@ -57,7 +57,7 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
             @Override
             public void onClick(View v) {
                 if(onItemClickListener != null){
-                    onItemClickListener.onItemClick(thisAchievement.getTitle(),thisAchievement.getBody());
+                    onItemClickListener.onItemClick(thisAchievement.getTitle(),thisAchievement.getBody(),null,null);
                 }
             }
         });

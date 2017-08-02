@@ -61,9 +61,12 @@ public class SIGNotification extends AppCompatActivity {
 
         sigAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(String title,String body) {
+            public void onItemClick(String title,String body,String date,String place) {
                 Intent i = new Intent(getApplicationContext(),LargeSIGNotification.class);
                 i.putExtra("title",title);
+                i.putExtra("body",body);
+                i.putExtra("date",date);
+                i.putExtra("place",place);
                 startActivity(i);
             }
         });
