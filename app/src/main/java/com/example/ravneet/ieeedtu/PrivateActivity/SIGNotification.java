@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 
 import com.example.ravneet.ieeedtu.Adapters.OnItemClickListener;
 import com.example.ravneet.ieeedtu.Adapters.SIGAdapter;
@@ -23,6 +24,8 @@ public class SIGNotification extends AppCompatActivity {
     RecyclerView rv_signotification;
     SIGAdapter sigAdapter;
 
+    private ProgressBar progress;
+
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener = new ValueEventListener() {
@@ -36,6 +39,7 @@ public class SIGNotification extends AppCompatActivity {
                         ,dataSnapshotchild.child("description").getValue().toString());
                 SigList.add(thisSig);
             }
+            progress.setVisibility(ProgressBar.GONE);
             sigAdapter.updateSIGList(SigList);
         }
 
@@ -49,6 +53,8 @@ public class SIGNotification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signotification);
+
+        progress = (ProgressBar) findViewById(R.id.progressBar);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("SIGInformation");
@@ -70,6 +76,7 @@ public class SIGNotification extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        progress.setVisibility(ProgressBar.VISIBLE);
 
         databaseReference.addValueEventListener(valueEventListener);
     }

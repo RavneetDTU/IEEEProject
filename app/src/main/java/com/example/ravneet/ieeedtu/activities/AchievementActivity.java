@@ -70,7 +70,7 @@ public class AchievementActivity extends AppCompatActivity {
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(String title, String body) {
+            public void onItemClick(String title, String body,String date, String place) {
                 Intent i = new Intent(AchievementActivity.this,LargeAchievement.class);
                 i.putExtra("title",title);
                 i.putExtra("body",body);
