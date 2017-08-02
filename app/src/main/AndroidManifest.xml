@@ -3,7 +3,7 @@
     package="com.example.ravneet.ieeedtu">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -57,7 +57,8 @@
         <activity android:name=".MakingPosts.NotificationPosting" />
         <activity android:name=".activities.LargePublicNotification" />
         <activity android:name=".MakingPosts.PostAchievement" />
-        <activity android:name=".activities.LargeAchievement"></activity>
+        <activity android:name=".activities.LargeAchievement" />
+        <activity android:name=".MakingPosts.IEEENotification"></activity>
     </application>
 
 </manifest>
