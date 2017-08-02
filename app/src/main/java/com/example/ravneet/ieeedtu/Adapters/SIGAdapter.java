@@ -60,7 +60,7 @@ public class SIGAdapter extends RecyclerView.Adapter<SIGAdapter.SIGViewHolder> {
             @Override
             public void onClick(View v) {
                 if(onItemClickListener != null){
-                    onItemClickListener.onItemClick(thisSIG.getTitle());
+                    onItemClickListener.onItemClick(thisSIG.getTitle(),null);
                 }
             }
         });

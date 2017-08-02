@@ -59,7 +59,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             @Override
             public void onClick(View v) {
                 if(onItemClickListener != null){
-                    onItemClickListener.onItemClick(thisnotificatioin.getTitle());
+                    onItemClickListener.onItemClick(thisnotificatioin.getTitle(),null);
                 }
             }
         });

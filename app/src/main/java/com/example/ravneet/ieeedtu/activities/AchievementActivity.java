@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StreamDownloadTask;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class AchievementActivity extends AppCompatActivity {
                         ,dataSnapshotchild.child("body").getValue().toString());
                 achievementList.add(thisAchievement);
             }
-            ((ViewGroup)progress.getParent()).removeView(progress);
+            progress.setVisibility(ProgressBar.GONE);
             adapter.updateAchievements(achievementList);
 
         }
@@ -69,8 +70,11 @@ public class AchievementActivity extends AppCompatActivity {
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(String title) {
-                startActivity(new Intent(AchievementActivity.this,LargeAchievement.class));
+            public void onItemClick(String title, String body) {
+                Intent i = new Intent(AchievementActivity.this,LargeAchievement.class);
+                i.putExtra("title",title);
+                i.putExtra("body",body);
+                startActivity(i);
             }
         });
 

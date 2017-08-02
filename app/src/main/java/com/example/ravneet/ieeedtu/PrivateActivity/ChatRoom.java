@@ -15,10 +15,17 @@ import android.widget.ProgressBar;
 
 import com.example.ravneet.ieeedtu.Adapters.MessageAdapter;
 import com.example.ravneet.ieeedtu.R;
+import com.example.ravneet.ieeedtu.infrasturcture.Message;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 public class ChatRoom extends AppCompatActivity {
 
@@ -33,9 +40,29 @@ public class ChatRoom extends AppCompatActivity {
     private Button btn_MessageSend;
 
     private FirebaseDatabase firebaseDatabase;
+    private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
+
+    private MessageAdapter messageAdapter;
+
+    private ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+
+            for(DataSnapshot data : dataSnapshot.getChildren()){
+                Message thisMessge = new Message(data.child("text").getValue().toString(),data.child("name").getValue().toString(),null);
+                messageAdapter.add(thisMessge);
+            }
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +71,7 @@ public class ChatRoom extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         listView = (ListView) findViewById(R.id.messageListView);
@@ -67,26 +95,14 @@ public class ChatRoom extends AppCompatActivity {
             }
         });
 
-        et_Message.addTextChangedListener(new TextWatcher() {
+        btn_MessageSend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onClick(View v) {
+                Message thismessage = new Message(et_Message.getText().toString(),firebaseAuth.getCurrentUser().getDisplayName(),null);
 
-            }
+                databaseReference.push().setValue(thismessage);
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-
-                if(charSequence.toString().trim().length() > 0){
-                    btn_MessageSend.setEnabled(true);
-                }else {
-                    btn_MessageSend.setEnabled(false);
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+                et_Message.setText("");
             }
         });
 

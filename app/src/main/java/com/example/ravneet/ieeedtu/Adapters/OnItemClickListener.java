@@ -5,5 +5,5 @@ package com.example.ravneet.ieeedtu.Adapters;
  */
 
 public interface OnItemClickListener {
-    void onItemClick(String title);
+    void onItemClick(String title, String body);
 }
