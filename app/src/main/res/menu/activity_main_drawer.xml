@@ -4,13 +4,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_notification"
-            android:title="Notifications" />
+            android:title="Notifications"
+            android:icon="@drawable/notification"/>
         <item
             android:id="@+id/nav_ieeecouncil"
-            android:title="IEEE Council" />
+            android:title="IEEE Council"
+            android:icon="@drawable/admin"/>
         <item
             android:id="@+id/nav_biweeklyArticle"
-            android:title="Achivements"/>
+            android:title="Achivements"
+            android:icon="@drawable/achievements"/>
 
 
     </group>

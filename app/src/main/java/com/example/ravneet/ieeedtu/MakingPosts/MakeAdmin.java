@@ -36,10 +36,14 @@ public class MakeAdmin extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Admins thisAdmin = new Admins(email.getText().toString(),email.getText().toString(),year.getText().toString());
+                Admins thisAdmin = new Admins(email.getText().toString(),name.getText().toString(),year.getText().toString());
                 databaseReference.push().setValue(thisAdmin);
 
                 Toast.makeText(MakeAdmin.this, "Admin Added....", Toast.LENGTH_SHORT).show();
+
+                name.setText("");
+                email.setText("");
+                year.setText("");
             }
         });
 

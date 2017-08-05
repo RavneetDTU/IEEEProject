@@ -128,7 +128,9 @@ public class MainActivity extends AppCompatActivity
         adminNavigationView = (NavigationView) drawer.findViewById(R.id.nav_rightview);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_rightview);
+        navigationView1.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
        navigationView1.setNavigationItemSelectedListener(this);
         drawer.removeViewAt(2);
@@ -245,13 +247,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_chatroom) {
             startActivity(new Intent(MainActivity.this, ChatRoom.class));
         } else if (id == R.id.nav_admin){
-//            if(isAdmin == true || firebaseAuth.getInstance().getCurrentUser().getEmail().equals("ravneet.dtu@gmail.com")){
-//                startActivity(new Intent(MainActivity.this, MakePosts.class));
-//            }
-//            else {
-//                Toast.makeText(this, "You Are Not Admin", Toast.LENGTH_SHORT).show();
-//            }
-            startActivity(new Intent(MainActivity.this, MakePosts.class));
+            if(isAdmin == true || firebaseAuth.getInstance().getCurrentUser().getEmail().equals("ravneet.dtu@gmail.com")){
+                startActivity(new Intent(MainActivity.this, MakePosts.class));
+            }
+            else {
+                Toast.makeText(this, "You Are Not Admin", Toast.LENGTH_SHORT).show();
+            }
+//            startActivity(new Intent(MainActivity.this, MakePosts.class));
         }
 
 
@@ -266,7 +268,6 @@ public class MainActivity extends AppCompatActivity
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(MainActivity.this, "You are Logged In...", Toast.LENGTH_SHORT).show();
                 databaseReference.addValueEventListener(valueEventListener);
                 databaseReferenceadmin.addValueEventListener(valueEventListeneradmin);
             } else if (resultCode == RESULT_CANCELED) {

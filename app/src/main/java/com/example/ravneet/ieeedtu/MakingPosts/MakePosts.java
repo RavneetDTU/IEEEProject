@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.ravneet.ieeedtu.R;
@@ -14,6 +16,7 @@ public class MakePosts extends AppCompatActivity {
 
     Button btn_SIGNotification,btn_PublicNotification,btn_IEEECouncil,btn_Achivements,btn_Membership,btn_makeAdmin;
     private FirebaseAuth firebaseAuth;
+    Switch aSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +31,12 @@ public class MakePosts extends AppCompatActivity {
         btn_PublicNotification = (Button) findViewById(R.id.btn_makepublicNotification);
         btn_Achivements = (Button) findViewById(R.id.btn_MakeAchievement);
         btn_makeAdmin = (Button) findViewById(R.id.btn_adminUser);
+        aSwitch = (Switch) findViewById(R.id.Switch);
 
         btn_SIGNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MakePosts.this,SIGInformationPost.class));
-                finish();
-            }
-        });
-
-        btn_IEEECouncil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MakePosts.this,IEEECouncilPost.class));
                 finish();
             }
         });
@@ -77,6 +73,26 @@ public class MakePosts extends AppCompatActivity {
                 else {
                     Toast.makeText(MakePosts.this, "For Developer Only", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                 if(isChecked == true){
+
+                     btn_IEEECouncil.setOnClickListener(new View.OnClickListener() {
+                         @Override
+                         public void onClick(View v) {
+                             startActivity(new Intent(MakePosts.this,IEEECouncilPost.class));
+                             finish();
+                         }
+                     });
+
+                 }
+                 else {
+
+                 }
             }
         });
     }

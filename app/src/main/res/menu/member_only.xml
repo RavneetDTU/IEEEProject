@@ -6,16 +6,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_signotification"
-            android:title="SIG Notification" />
+            android:title="SIG Notification"
+            android:icon="@drawable/sig"/>
         <item
             android:id="@+id/nav_eventnotification"
-            android:title="Event Notification" />
+            android:title="Event Notification"
+            android:icon="@drawable/eventnof"/>
         <item
             android:id="@+id/nav_chatroom"
-            android:title="Chat Room" />
+            android:title="Chat Room"
+            android:icon="@drawable/chat"/>
         <item
             android:id="@+id/nav_admin"
-            android:title="Admin Panel"/>
+            android:title="Admin Panel"
+            android:icon="@drawable/admin"/>
     </group>
     
 </menu>
