@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -41,9 +42,10 @@ public class IEEECouncilPost extends AppCompatActivity {
     Button btn_PostInfo,btn_Image;
     ImageView memberimage;
 
+    Uri uri;
+    Uri downloadURL;
+
     public static final int PICK_IMAGE = 100;
-    public static final int GALLERY_INTENT = 1;
-    public static final int CAMERA_REQUEST_CODE = 2;
 
     private ProgressDialog progressDialog;
 
@@ -68,13 +70,15 @@ public class IEEECouncilPost extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
-        storageReference = FirebaseStorage.getInstance().getReference() ;
+        storageReference = FirebaseStorage.getInstance().getReference().child("IEEECouncilPic") ;
 
         btn_PostInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                IEEECouncil thismember = new IEEECouncil(et_PostOfMember.getText().toString(),et_NameOfMember.getText().toString(),et_Year.getText().toString());
+                uploadImage();
+
+                IEEECouncil thismember = new IEEECouncil(et_PostOfMember.getText().toString(),et_NameOfMember.getText().toString(),et_Year.getText().toString(),downloadURL.toString());
 
                 databaseReference.push().setValue(thismember);
 
@@ -92,12 +96,10 @@ public class IEEECouncilPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(Intent.ACTION_PICK);
-
+                Intent i = new Intent();
                 i.setType("image/*");
-
-//                startActivityForResult(i,GALLERY_INTENT);
-                startActivityForResult(i,CAMERA_REQUEST_CODE);
+                i.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(i,"Select Picture Using"),PICK_IMAGE);
 
 
             }
@@ -110,32 +112,43 @@ public class IEEECouncilPost extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
-//
-//            progressDialog.setMessage("Uploading.....");
-//            progressDialog.show();
-//
-//            Uri uri = data.getData();
-//
-//            StorageReference filePath = storageReference.child("Photos").child(uri.getLastPathSegment());
-//
-//            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    Toast.makeText(IEEECouncilPost.this, "File Uploaded Succesfully", Toast.LENGTH_SHORT).show();
-//                    progressDialog.dismiss();
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(IEEECouncilPost.this, "File Uploading Failed !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
-        if( requestCode == CAMERA_REQUEST_CODE &&  requestCode == RESULT_OK){
+        if(resultCode == RESULT_OK && data != null && data.getData() != null){
+            if(requestCode == PICK_IMAGE) {
+                uri = data.getData();
+                Picasso.with(getApplicationContext()).load(uri).into((ImageView)findViewById(R.id.iv_memberImage));
+            }
+        }
+    }
+    private void uploadImage(){
+        if (uri != null){
+            final ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setTitle("Uploading Image....");
+            dialog.show();
 
-            Uri uri = data.getData();
-            Picasso.with(getApplicationContext()).load(uri).into(memberimage);
+            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @SuppressWarnings("VisibleForTests")
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    dialog.dismiss();
+                    downloadURL = taskSnapshot.getDownloadUrl();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(IEEECouncilPost.this, "Error In Uploading", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @SuppressWarnings("VisibleForTests")
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100*taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
+                    dialog.setMessage("Uploaded : "+(int)progress);
+                    dialog.show();
+                }
+            });
+
+        }else {
+            Toast.makeText(this, "Please Select an Image", Toast.LENGTH_SHORT).show();
         }
     }
 }

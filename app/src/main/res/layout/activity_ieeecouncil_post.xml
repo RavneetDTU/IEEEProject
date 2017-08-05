@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textColor="@android:color/black"
-            android:text="Note : Please Upload thumbnail Size Image, above given image is for Referance. And After Everything final Press Post Information Button"/>
+            android:text="Note : Please Upload thumbnail Size Image, above given image is for Referance. And After Everything final Press Post Information Button.Keep Image Size under 10KB"/>
     </LinearLayout>
 
 </ScrollView>

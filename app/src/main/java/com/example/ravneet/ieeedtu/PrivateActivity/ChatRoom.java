@@ -76,9 +76,8 @@ public class ChatRoom extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        ImageView imageView = (ImageView) findViewById(R.id.iv_imageChat);
 
-        Picasso.with(this).load("https://github.com/RavneetDTU/IEEEProject/blob/master/ComingSoon.png").into(imageView);
+        Picasso.with(this).load("https://github.com/RavneetDTU/IEEEProject/blob/master/ComingSoon.png").into((ImageView) findViewById(R.id.iv_imageChat));
         progressBar.setVisibility(ProgressBar.GONE);
 
 //        firebaseDatabase = FirebaseDatabase.getInstance();
@@ -102,7 +101,7 @@ public class ChatRoom extends AppCompatActivity {
 //                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
 //                i.setType("image/*");
 //                i.putExtra(i.EXTRA_LOCAL_ONLY,true);
-//                startActivityForResult(i.createChooser(i,"Complete Action Using...."),RC_PHOTO_PICKER);
+//                startActivityForResult(i.createChooser(i,"Complete Action Using...."),RC_PHOTO_PICER);K
 //
 //            }
 //        });

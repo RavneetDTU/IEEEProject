@@ -6,5 +6,6 @@ package com.example.ravneet.ieeedtu.infrasturcture
 data class IEEECouncil(
         val post : String,
         val name : String,
-        val year : String
+        val year : String,
+        val imageurl : String
 )

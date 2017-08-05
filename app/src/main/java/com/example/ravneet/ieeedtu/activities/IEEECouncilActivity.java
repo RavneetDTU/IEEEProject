@@ -40,7 +40,8 @@ public class IEEECouncilActivity extends AppCompatActivity {
 
                 IEEECouncil thismember = new IEEECouncil(dataSnapshotchild.child("name").getValue().toString()
                         ,dataSnapshotchild.child("post").getValue().toString()
-                        ,dataSnapshotchild.child("year").getValue().toString());
+                        ,dataSnapshotchild.child("year").getValue().toString(),
+                        dataSnapshotchild.child("imageurl").getValue().toString());
                 councilArrayList.add(thismember);
             }
             ((ViewGroup)progress.getParent()).removeView(progress);
