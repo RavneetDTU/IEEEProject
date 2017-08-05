@@ -6,10 +6,7 @@
         android:orderInCategory="100"
         android:title="Contact Us"
         app:showAsAction="never" />
-    <item
-        android:title="Posts"
-        android:id="@+id/makePosts"
-        app:showAsAction="always"/>
+
     <item
         android:title="SIGN-OUT"
         android:id="@+id/nav_signout"/>

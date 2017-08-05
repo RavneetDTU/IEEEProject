@@ -11,14 +11,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 
+import com.example.ravneet.ieeedtu.MakingPosts.MakeMember;
 import com.example.ravneet.ieeedtu.MakingPosts.MakePosts;
 import com.example.ravneet.ieeedtu.PrivateActivity.ChatRoom;
 import com.example.ravneet.ieeedtu.PrivateActivity.EventNotification;
 import com.example.ravneet.ieeedtu.PrivateActivity.SIGNotification;
 import com.example.ravneet.ieeedtu.R;
+import com.example.ravneet.ieeedtu.infrasturcture.Admins;
 import com.example.ravneet.ieeedtu.infrasturcture.PaidMember;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,10 +40,12 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth firebaseAuth;
+    ArrayList<Admins> adminList = new ArrayList<>();
+    private boolean isAdmin = false;
     static ArrayList<PaidMember> paidMemberList = new ArrayList<>();
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private FirebaseAuth.AuthStateListener authStateListener;
+    private DatabaseReference databaseReferenceadmin;
     private ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -58,10 +63,34 @@ public class MainActivity extends AppCompatActivity
                     //navigationView1.setVisibility(View.VISIBLE);
                     if (drawer.findViewById(R.id.nav_rightview) == null)
                         drawer.addView(adminNavigationView);
-                    Toast.makeText(MainActivity.this, "You Are Admin User...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Welcome IEEE Member.", Toast.LENGTH_SHORT).show();
 
                 }
             }
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
+    private ValueEventListener valueEventListeneradmin = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            for(DataSnapshot dataSnapshotChildren : dataSnapshot.getChildren()){
+                Admins thisAdmin = new Admins(dataSnapshotChildren.child("email").getValue().toString(),
+                        dataSnapshotChildren.child("name").getValue().toString());
+                adminList.add(thisAdmin);
+            }
+            for(int i = 0;i<adminList.size();i++){
+                if(adminList.get(i).getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
+                    isAdmin = true;
+                }
+            }
+
+
 
         }
 
@@ -82,6 +111,7 @@ public class MainActivity extends AppCompatActivity
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("IEEE Members");
+        databaseReferenceadmin = firebaseDatabase.getReference().child("admins");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -123,7 +153,7 @@ public class MainActivity extends AppCompatActivity
                             //navigationView1.setVisibility(View.VISIBLE);
                             if (drawer.findViewById(R.id.nav_rightview) == null)
                                 drawer.addView(adminNavigationView);
-                            Toast.makeText(MainActivity.this, "You Are Admin User...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Welcome IEEE Member", Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -177,9 +207,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_contactus) {
             startActivity(new Intent(MainActivity.this, ContactUs.class));
             return true;
-        } else if (id == R.id.makePosts) {
-            startActivity(new Intent(MainActivity.this, MakePosts.class));
-            return true;
         } else if (id == R.id.nav_signout) {
             AuthUI.getInstance().signOut(this);
             drawer.removeView(adminNavigationView);
@@ -216,6 +243,15 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, EventNotification.class));
         } else if (id == R.id.nav_chatroom) {
             startActivity(new Intent(MainActivity.this, ChatRoom.class));
+        } else if(id == R.id.nav_admin){
+
+        } else if (id == R.id.nav_admin){
+            if(isAdmin == true){
+                startActivity(new Intent(MainActivity.this, MakePosts.class));
+            }
+            else {
+                Toast.makeText(this, "You Are Not Admin", Toast.LENGTH_SHORT).show();
+            }
         }
 
 
@@ -232,6 +268,7 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 Toast.makeText(MainActivity.this, "You are Logged In...", Toast.LENGTH_SHORT).show();
                 databaseReference.addValueEventListener(valueEventListener);
+                databaseReferenceadmin.addValueEventListener(valueEventListeneradmin);
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Sign-In Canceled", Toast.LENGTH_SHORT).show();
                 finish();
