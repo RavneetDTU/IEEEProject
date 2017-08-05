@@ -80,8 +80,9 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             for(DataSnapshot dataSnapshotChildren : dataSnapshot.getChildren()){
-                Admins thisAdmin = new Admins(dataSnapshotChildren.child("email").getValue().toString(),
-                        dataSnapshotChildren.child("name").getValue().toString());
+                Admins thisAdmin = new Admins(dataSnapshotChildren.child("email").getValue().toString().toLowerCase(),
+                        dataSnapshotChildren.child("name").getValue().toString(),
+                        dataSnapshotChildren.child("year").getValue().toString());
                 adminList.add(thisAdmin);
             }
             for(int i = 0;i<adminList.size();i++){
@@ -243,15 +244,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, EventNotification.class));
         } else if (id == R.id.nav_chatroom) {
             startActivity(new Intent(MainActivity.this, ChatRoom.class));
-        } else if(id == R.id.nav_admin){
-
         } else if (id == R.id.nav_admin){
-            if(isAdmin == true){
-                startActivity(new Intent(MainActivity.this, MakePosts.class));
-            }
-            else {
-                Toast.makeText(this, "You Are Not Admin", Toast.LENGTH_SHORT).show();
-            }
+//            if(isAdmin == true || firebaseAuth.getInstance().getCurrentUser().getEmail().equals("ravneet.dtu@gmail.com")){
+//                startActivity(new Intent(MainActivity.this, MakePosts.class));
+//            }
+//            else {
+//                Toast.makeText(this, "You Are Not Admin", Toast.LENGTH_SHORT).show();
+//            }
+            startActivity(new Intent(MainActivity.this, MakePosts.class));
         }
 
 

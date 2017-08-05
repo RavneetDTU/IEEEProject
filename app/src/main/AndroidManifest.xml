@@ -58,7 +58,8 @@
         <activity android:name=".activities.LargePublicNotification" />
         <activity android:name=".MakingPosts.PostAchievement" />
         <activity android:name=".activities.LargeAchievement" />
-        <activity android:name=".MakingPosts.IEEENotification"></activity>
+        <activity android:name=".MakingPosts.IEEENotification" />
+        <activity android:name=".MakingPosts.MakeAdmin"></activity>
     </application>
 
 </manifest>

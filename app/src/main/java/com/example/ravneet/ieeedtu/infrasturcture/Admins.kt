@@ -5,5 +5,6 @@ package com.example.ravneet.ieeedtu.infrasturcture
  */
 data class Admins(
         val email : String,
-        val name: String
+        val name: String,
+        val year : String
 )
