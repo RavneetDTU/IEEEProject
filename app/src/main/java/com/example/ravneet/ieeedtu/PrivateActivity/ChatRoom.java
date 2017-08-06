@@ -65,20 +65,21 @@ public class ChatRoom extends AppCompatActivity {
 //
 //        }
 //    };
-
-    private ProgressBar progressBar;
+    ImageView iv_Chat;
+    ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(ProgressBar.VISIBLE);
+        iv_Chat = (ImageView) findViewById(R.id.iv_imageChat);
 
+        progress = (ProgressBar) findViewById(R.id.progressBar);
+        progress.setVisibility(ProgressBar.VISIBLE);
 
-        Picasso.with(this).load("https://github.com/RavneetDTU/IEEEProject/blob/master/ComingSoon.png").into((ImageView) findViewById(R.id.iv_imageChat));
-        progressBar.setVisibility(ProgressBar.GONE);
+        Picasso.with(this).load("https://firebasestorage.googleapis.com/v0/b/ieeedtu-381fd.appspot.com/o/ComingSoon.png?alt=media&token=fdc19dd3-324a-4b31-bb52-e5411dd94f21").into(iv_Chat);
+        progress.setVisibility(ProgressBar.GONE);
 
 //        firebaseDatabase = FirebaseDatabase.getInstance();
 //        firebaseStorage = FirebaseStorage.getInstance();
