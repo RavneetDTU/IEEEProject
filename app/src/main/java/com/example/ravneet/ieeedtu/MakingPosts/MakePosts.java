@@ -9,12 +9,13 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.ravneet.ieeedtu.PrivateActivity.EventNotification;
 import com.example.ravneet.ieeedtu.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MakePosts extends AppCompatActivity {
 
-    Button btn_SIGNotification,btn_PublicNotification,btn_IEEECouncil,btn_Achivements,btn_Membership,btn_makeAdmin;
+    Button btn_SIGNotification,btn_PublicNotification,btn_IEEECouncil,btn_Achivements,btn_Membership,btn_makeAdmin,btn_InternalNOtf;
     private FirebaseAuth firebaseAuth;
     Switch aSwitch;
 
@@ -31,6 +32,7 @@ public class MakePosts extends AppCompatActivity {
         btn_PublicNotification = (Button) findViewById(R.id.btn_makepublicNotification);
         btn_Achivements = (Button) findViewById(R.id.btn_MakeAchievement);
         btn_makeAdmin = (Button) findViewById(R.id.btn_adminUser);
+        btn_InternalNOtf = (Button) findViewById(R.id.btn_InternalNOtification);
         aSwitch = (Switch) findViewById(R.id.Switch);
 
         btn_SIGNotification.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +75,12 @@ public class MakePosts extends AppCompatActivity {
                 else {
                     Toast.makeText(MakePosts.this, "For Developer Only", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        btn_InternalNOtf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MakePosts.this, IEEENotification.class));
             }
         });
 

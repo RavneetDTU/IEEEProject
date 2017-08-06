@@ -9,11 +9,19 @@
 
     <include
         layout="@layout/include_ieee_header"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PUBLIC POSTS"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:gravity="center_horizontal"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SIG Notification"
-        android:id="@+id/btn_SIGNotification"/>
+        android:text="Post Achievement"
+        android:id="@+id/btn_MakeAchievement"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,11 +32,26 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_IEEECouncil"
         android:text="IEEE Council"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MEMBER NOTIFICATION"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:gravity="center_horizontal"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Post Achievement"
-        android:id="@+id/btn_MakeAchievement"/>
+        android:text="SIG Notification"
+        android:id="@+id/btn_SIGNotification"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Internal Notification"
+        android:id="@+id/btn_InternalNOtification"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +64,7 @@
         android:id="@+id/btn_adminUser"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:text="If below push button is ON than only you can ADD IEEE Council Members"/>

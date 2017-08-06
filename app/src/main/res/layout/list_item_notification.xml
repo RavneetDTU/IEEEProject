@@ -20,7 +20,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
+                android:textSize="24dp"
+                android:textColor="@color/Blue700"
                 android:text="Title Of Article"
                 android:id="@+id/tv_notificationTitle"/>
 
@@ -33,7 +34,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="20dp"
+                    android:textSize="21dp"
+                    android:textColor="@color/Blue300"
                     android:id="@+id/tv_notificationDate"
                     android:layout_weight="1"
                     android:text="Date"/>

@@ -8,4 +8,7 @@
     <color name="Green">#43A047</color>
     <color name="Red">#FF1744</color>
     <color name="Orange">#FF6D00</color>
+    <color name="Blue700">#1976D2</color>
+    <color name="Blue500">#2196F3</color>
+    <color name="Blue300">#64B5F6</color>
 </resources>

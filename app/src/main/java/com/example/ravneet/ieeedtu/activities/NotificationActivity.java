@@ -73,6 +73,10 @@ public class NotificationActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(String title,String body,String date,String place) {
                     Intent i = new Intent(NotificationActivity.this,LargePublicNotification.class);
+                    i.putExtra("title",title);
+                    i.putExtra("date",date);
+                    i.putExtra("place",place);
+                    i.putExtra("body",body);
                     startActivity(i);
                 }
             });

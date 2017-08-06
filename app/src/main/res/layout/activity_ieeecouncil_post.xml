@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:id="@+id/btn_IEEEMemberImage"
-        android:text="Attach Image"/>
+        android:text="Attach and Upload Image"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

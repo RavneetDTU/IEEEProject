@@ -42,7 +42,6 @@ public class IEEECouncilPost extends AppCompatActivity {
     Button btn_PostInfo,btn_Image;
     ImageView memberimage;
 
-    Uri uri;
     Uri downloadURL;
 
     public static final int PICK_IMAGE = 100;
@@ -70,28 +69,7 @@ public class IEEECouncilPost extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
-        storageReference = FirebaseStorage.getInstance().getReference().child("IEEECouncilPic") ;
-
-        btn_PostInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                uploadImage();
-
-                IEEECouncil thismember = new IEEECouncil(et_PostOfMember.getText().toString(),et_NameOfMember.getText().toString(),et_Year.getText().toString(),downloadURL.toString());
-
-                databaseReference.push().setValue(thismember);
-
-                Toast.makeText(IEEECouncilPost.this, "Posting Member Info", Toast.LENGTH_SHORT).show();
-
-                et_Year.setText("");
-                et_NameOfMember.setText("");
-                et_PostOfMember.setText("");
-
-
-            }
-        });
-
+        storageReference = FirebaseStorage.getInstance().getReference();
         btn_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +84,9 @@ public class IEEECouncilPost extends AppCompatActivity {
         });
 
 
+
+
+
     }
 
     @Override
@@ -114,41 +95,46 @@ public class IEEECouncilPost extends AppCompatActivity {
 
         if(resultCode == RESULT_OK && data != null && data.getData() != null){
             if(requestCode == PICK_IMAGE) {
-                uri = data.getData();
+                Uri uri = data.getData();
                 Picasso.with(getApplicationContext()).load(uri).into((ImageView)findViewById(R.id.iv_memberImage));
+
+                progressDialog.setMessage("Uploading....");
+                progressDialog.show();
+
+                StorageReference filepath = storageReference.child("IEEEPic").child(uri.getLastPathSegment());
+
+                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressDialog.dismiss();
+                        //noinspection VisibleForTests
+                        downloadURL = taskSnapshot.getDownloadUrl();
+                        btn_PostInfo.setOnClickListener( new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                IEEECouncil thismember = new IEEECouncil(et_PostOfMember.getText().toString(),et_NameOfMember.getText().toString(),et_Year.getText().toString(),downloadURL.toString());
+
+                                databaseReference.push().setValue(thismember);
+
+                                Toast.makeText(IEEECouncilPost.this, "Posting Member Info", Toast.LENGTH_SHORT).show();
+
+                                et_Year.setText("");
+                                et_NameOfMember.setText("");
+                                et_PostOfMember.setText("");
+
+                            }
+                        });
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(IEEECouncilPost.this, "Image Uploading Failed", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
             }
         }
     }
-    private void uploadImage(){
-        if (uri != null){
-            final ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setTitle("Uploading Image....");
-            dialog.show();
 
-            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @SuppressWarnings("VisibleForTests")
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    dialog.dismiss();
-                    downloadURL = taskSnapshot.getDownloadUrl();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(IEEECouncilPost.this, "Error In Uploading", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @SuppressWarnings("VisibleForTests")
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100*taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
-                    dialog.setMessage("Uploaded : "+(int)progress);
-                    dialog.show();
-                }
-            });
-
-        }else {
-            Toast.makeText(this, "Please Select an Image", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
