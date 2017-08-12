@@ -61,11 +61,10 @@ and all Internal Notifications details "/>
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:id="@+id/iv_Contactus"
-            android:src="@drawable/trailer"
-            android:layout_weight="0.60" />
+            android:id="@+id/iv_Contactus"/>
 
     </LinearLayout>
 

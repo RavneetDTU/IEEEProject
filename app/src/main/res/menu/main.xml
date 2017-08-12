@@ -8,6 +8,11 @@
         app:showAsAction="never" />
 
     <item
-        android:title="SIGN-OUT"
+        android:title="Sign-Out"
         android:id="@+id/nav_signout"/>
+
+    <item
+        android:title="Developed By"
+        android:id="@+id/nav_DevelopedBy"
+        android:visible="false"/>
 </menu>

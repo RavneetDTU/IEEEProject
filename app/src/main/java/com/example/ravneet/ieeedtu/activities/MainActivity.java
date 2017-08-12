@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.joaquimley.faboptions.FabOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,6 +117,9 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FabOptions fabOptions = (FabOptions) findViewById(R.id.fab_options);
+        fabOptions.setButtonsMenu(R.menu.main);
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

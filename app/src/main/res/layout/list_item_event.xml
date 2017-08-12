@@ -18,13 +18,13 @@
         android:layout_height="wrap_content"
         android:text="Title"
         android:id="@+id/tv_EventTitle"
-        android:textSize="25dp"/>
+        android:textSize="23dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Date and Time"
         android:id="@+id/tv_Eventdate"
-        android:textSize="18dp"
+        android:textSize="19dp"
         android:gravity="end"/>
 
     </LinearLayout>

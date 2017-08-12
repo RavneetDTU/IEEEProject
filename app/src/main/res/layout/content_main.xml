@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/mainactivity_linerlayout"
         android:orientation="vertical">
 
@@ -48,5 +48,14 @@
 Most Innovative Student Branch and Award 2012"/>
 
     </LinearLayout>
+
+    <com.joaquimley.faboptions.FabOptions
+        android:id="@+id/fab_options"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        app:background_color="@color/colorAccent"
+        app:fab_color="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
