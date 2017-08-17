@@ -1,6 +1,8 @@
 package com.example.ravneet.ieeedtu.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.ravneet.ieeedtu.Adapters.CardfregmentAdapter;
 import com.example.ravneet.ieeedtu.Adapters.IEEECouncilAdapter;
 import com.example.ravneet.ieeedtu.R;
 import com.example.ravneet.ieeedtu.infrasturcture.IEEECouncil;
@@ -61,6 +64,16 @@ public class IEEECouncilActivity extends AppCompatActivity {
 
         progress = (ProgressBar) findViewById(R.id.progressBar);
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        CardfregmentAdapter adapter = new CardfregmentAdapter(getSupportFragmentManager(),dpToPixels(2,this));
+//
+//        ShadowTransformer fragmentCardShadowTransformer = new ShadowTransformer(viewPager, pagerAdapter);
+//        fragmentCardShadowTransformer.enableScaling(true);
+//        viewPager.setAdapter(pagerAdapter);
+//        viewPager.setPageTransformer(false, fragmentCardShadowTransformer);
+//        viewPager.setOffscreenPageLimit(3);
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("IEEECouncil");
@@ -75,6 +88,10 @@ public class IEEECouncilActivity extends AppCompatActivity {
 
         databaseReference.addValueEventListener(valueEventListener);
 
+    }
+
+    public static float dpToPixels(int dp, Context context) {
+        return dp * (context.getResources().getDisplayMetrics().density);
     }
 
 }

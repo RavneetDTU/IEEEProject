@@ -17,9 +17,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-//        debug{
-//            multiDexEnabled true
-//        }
     }
 }
 
@@ -40,8 +37,6 @@ dependencies {
     compile 'com.google.firebase:firebase-crash:10.0.1'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.firebaseui:firebase-ui-auth:1.1.1'
-    compile 'com.github.joaquimley:faboptions:1.1.2'
-    compile 'com.gospelware.liquidbutton:liquidButtonLib:1.1.5'
     testCompile 'junit:junit:4.12'
 }
 
