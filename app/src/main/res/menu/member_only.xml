@@ -5,6 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_ieeecouncil"
+            android:title="IEEE Council"
+            android:icon="@drawable/admin"/>
+        <item
+            android:id="@+id/nav_biweeklyArticle"
+            android:title="Achivements"
+            android:icon="@drawable/achievements"/>
+        <item
             android:id="@+id/nav_signotification"
             android:title="SIG Notification"
             android:icon="@drawable/sig"/>

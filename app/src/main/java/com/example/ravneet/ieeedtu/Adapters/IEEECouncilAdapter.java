@@ -73,11 +73,11 @@ public class IEEECouncilAdapter extends RecyclerView.Adapter<IEEECouncilAdapter.
             super(itemView);
 
             thisview = itemView;
-
-            PostOfMember = (TextView) itemView.findViewById(R.id.tv_postOfMember);
-            NameofMember = (TextView) itemView.findViewById(R.id.tv_nameOfMember);
-            Year = (TextView) itemView.findViewById(R.id.tv_YearOfMember);
-            iv_memberimage = (ImageView) itemView.findViewById(R.id.iv_PostOfMember);
+//
+//            PostOfMember = (TextView) itemView.findViewById(R.id.tv_postOfMember);
+//            NameofMember = (TextView) itemView.findViewById(R.id.tv_nameOfMember);
+//            Year = (TextView) itemView.findViewById(R.id.tv_YearOfMember);
+//            iv_memberimage = (ImageView) itemView.findViewById(R.id.iv_PostOfMember);
 
         }
     }
